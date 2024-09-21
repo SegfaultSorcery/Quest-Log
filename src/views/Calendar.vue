@@ -1,35 +1,32 @@
-<!-- https://fullcalendar.io/docs/vue -->
-<!-- https://fullcalendar.io/docs/event-object -->
 <template>
-    <div>
-        <FullCalendar :options="calendarOptions" />
-    </div>
-</template>
+  <div class="subcontent">
+    <navigation-bar
+      @today="onToday"
+      @prev="onPrev"
+      @next="onNext"
+    />
 
+    <div class="row justify-center">
+      <div style="display: flex; max-width: 800px; width: 100%; height: 400px;">
+        <q-calendar-day
+          ref="calendar"
+          v-model="selectedDate"
+          view="week"
+          dark
+          animated
+          bordered
+          @change="onChange"
+          @moved="onMoved"
+          @click-date="onClickDate"
+          @click-time="onClickTime"
+          @click-interval="onClickInterval"
+          @click-head-intervals="onClickHeadIntervals"
+          @click-head-day="onClickHeadDay"
+        />
+      </div>
+    </div>
+  </div>
+</template>
 <script setup>
     import { ref } from 'vue'; // Import ref from Vue
-import FullCalendar from '@fullcalendar/vue3';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
-const calendarOptions = ref({
-    plugins: [dayGridPlugin, interactionPlugin],
-    initialView: 'dayGridMonth',
-    firstDay: 1,
-    events: [
-        {
-            title: 'event1', 
-            start: '2024-09-18',
-            end: '2024-09-20',
-            color:  "red",
-            allDay: true
-        },
-        {
-            title: 'event1', 
-            start: '2024-09-18',
-            end: '2024-09-20'
-        }
-    ]
-});
 </script>
-
